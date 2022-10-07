@@ -23,6 +23,18 @@ public class Car {
         return toString();
     }
 
+    public String getName() {
+        return name.toString();
+    }
+
+    public int getPosition() {
+        return position.get();
+    }
+
+    public boolean match(int position) {
+        return this.position.match(position);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

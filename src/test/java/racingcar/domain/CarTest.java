@@ -2,6 +2,8 @@ package racingcar.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,5 +47,19 @@ class CarTest {
 
         // then
         assertThat(carExpression).hasToString(String.format(Car.RACER_EXPRESSION, NAME, ""));
+    }
+
+    @DisplayName("위치가 일치하는지 확인한다.")
+    @ParameterizedTest
+    @CsvSource({"0, true", "1, false"})
+    void forward(int comparePosition, boolean expected) {
+        // given
+        Car car = Car.from(NAME);
+
+        // when
+        boolean match = car.match(comparePosition);
+
+        // then
+        assertThat(match).isEqualTo(expected);
     }
 }
