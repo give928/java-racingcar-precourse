@@ -11,7 +11,7 @@ class RandomNumberGeneratorTest {
     @Test
     void generate() {
         // given
-        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        NumberGenerator numberGenerator = RandomNumberGenerator.instance();
 
         // when
         int number = numberGenerator.generate();

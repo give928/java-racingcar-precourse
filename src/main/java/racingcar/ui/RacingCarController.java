@@ -4,7 +4,7 @@ import racingcar.domain.*;
 import racingcar.dto.RecordDto;
 
 public class RacingCarController {
-    private final Movement movement = NumberConditionMovement.from(new RandomNumberGenerator());
+    private final Movement movement = NumberConditionMovement.from(RandomNumberGenerator.instance());
 
     public void start() {
         Racing racing = Racing.of(createEntry(), createLap());
