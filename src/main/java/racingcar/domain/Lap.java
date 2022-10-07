@@ -4,7 +4,8 @@ import java.util.Objects;
 
 public class Lap {
     private static final int MIN = 1;
-    static final String INVALID_RANGE_MESSAGE = String.format("시도할 횟수를 %d ~ %d 사이의 숫자로 입력해주세요.", MIN, Integer.MAX_VALUE);
+    static final String INVALID_RANGE_MESSAGE = String.format("시도할 횟수를 %d ~ %d 사이의 숫자로 입력해주세요.",
+                                                              MIN, Integer.MAX_VALUE);
 
     private final int value;
 

@@ -31,7 +31,7 @@ public class Car {
         return position.get();
     }
 
-    public boolean match(int position) {
+    public boolean isWinner(int position) {
         return this.position.match(position);
     }
 

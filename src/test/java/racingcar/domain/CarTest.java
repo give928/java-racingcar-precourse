@@ -57,7 +57,7 @@ class CarTest {
         Car car = Car.from(NAME);
 
         // when
-        boolean match = car.match(comparePosition);
+        boolean match = car.isWinner(comparePosition);
 
         // then
         assertThat(match).isEqualTo(expected);

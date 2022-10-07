@@ -5,8 +5,8 @@ import java.util.*;
 public class Entry {
     private static final int MIN_CAR_LENGTH = 1;
     private static final String CAR_NAME_SPLITTER = ",";
-    static final String INVALID_CAR_NAMES_MESSAGE = String.format(
-            "경주할 자동차 이름을 중복 없이 쉼표(%s)로 구분해서 %d대 이상 입력해주세요.", CAR_NAME_SPLITTER, MIN_CAR_LENGTH);
+    static final String INVALID_CAR_NAMES_MESSAGE = String.format("경주할 자동차 이름을 중복 없이 쉼표(%s)로 구분해서 %d대 이상 입력해주세요.",
+                                                                  CAR_NAME_SPLITTER, MIN_CAR_LENGTH);
 
     private final List<Car> cars;
 
@@ -60,7 +60,7 @@ public class Entry {
         int winnerPosition = findWinnerPosition();
         List<String> winners = new ArrayList<>();
         for (Car car : cars) {
-            addIfWinner(winners, car, winnerPosition);
+            addCarIfWinner(winners, car, winnerPosition);
         }
         return Collections.unmodifiableList(winners);
     }
@@ -73,8 +73,8 @@ public class Entry {
         return winnerPosition;
     }
 
-    private void addIfWinner(List<String> winners, Car car, int winnerPosition) {
-        if (car.match(winnerPosition)) {
+    private void addCarIfWinner(List<String> winners, Car car, int winnerPosition) {
+        if (car.isWinner(winnerPosition)) {
             winners.add(car.getName());
         }
     }

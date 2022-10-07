@@ -26,8 +26,8 @@ public class RacingCarController {
             return Entry.from(carNames);
         } catch(IllegalArgumentException e) {
             OutputView.error(e.getMessage());
+            return null;
         }
-        return null;
     }
 
     private Lap createLap() {
@@ -44,7 +44,7 @@ public class RacingCarController {
             return Lap.from(lapCount);
         } catch(IllegalArgumentException e) {
             OutputView.error(e.getMessage());
+            return null;
         }
-        return null;
     }
 }
