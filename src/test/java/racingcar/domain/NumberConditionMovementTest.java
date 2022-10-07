@@ -11,7 +11,7 @@ class NumberConditionMovementTest {
     @Test
     void forward() {
         // given
-        Movement movement = new NumberConditionMovement(() -> 4);
+        Movement movement = NumberConditionMovement.from(() -> 4);
 
         // when
         boolean forward = movement.forward();
@@ -24,7 +24,7 @@ class NumberConditionMovementTest {
     @Test
     void stop() {
         // given
-        Movement movement = new NumberConditionMovement(() -> 3);
+        Movement movement = NumberConditionMovement.from(() -> 3);
 
         // when
         boolean forward = movement.forward();
