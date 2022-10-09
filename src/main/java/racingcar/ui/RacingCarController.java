@@ -3,6 +3,8 @@ package racingcar.ui;
 import racingcar.domain.*;
 import racingcar.dto.RecordDto;
 
+import java.util.Optional;
+
 public class RacingCarController {
     private final Movement movement = NumberConditionMovement.from(RandomNumberGenerator.instance());
 
@@ -13,38 +15,38 @@ public class RacingCarController {
     }
 
     private Entry createEntry() {
-        Entry entry = null;
-        while (entry == null) {
+        Optional<Entry> entry;
+        do {
             entry = inputCarNames();
-        }
-        return entry;
+        } while (!entry.isPresent());
+        return entry.get();
     }
 
-    private static Entry inputCarNames() {
+    private Optional<Entry> inputCarNames() {
         try {
             String carNames = InputView.inputCarNames();
-            return Entry.from(carNames);
+            return Optional.of(Entry.from(carNames));
         } catch(IllegalArgumentException e) {
             OutputView.error(e.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 
     private Lap createLap() {
-        Lap lap = null;
-        while (lap == null) {
+        Optional<Lap> lap;
+        do {
             lap = inputLap();
-        }
-        return lap;
+        } while (!lap.isPresent());
+        return lap.get();
     }
 
-    private Lap inputLap() {
+    private Optional<Lap> inputLap() {
         try {
             String lapCount = InputView.inputLapCount();
-            return Lap.from(lapCount);
+            return Optional.of(Lap.from(lapCount));
         } catch(IllegalArgumentException e) {
             OutputView.error(e.getMessage());
-            return null;
+            return Optional.empty();
         }
     }
 }
