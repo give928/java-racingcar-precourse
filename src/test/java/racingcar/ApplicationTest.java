@@ -39,7 +39,7 @@ class ApplicationTest extends NsTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"a", "0", "2147483648"})
-    void 횟수에_대한_예외_처리(String lap) {
+    void 이동_횟수에_대한_예외_처리(String lap) {
         assertSimpleTest(
                 () -> {
                     runException("pobi,woni", lap);
@@ -54,6 +54,27 @@ class ApplicationTest extends NsTest {
                 () -> {
                     run("pobi,crong,honux", "5");
                     assertThat(output()).contains("pobi : -", "crong : ", "honux : -",
+                                                  "pobi : --", "crong : -", "honux : --",
+                                                  "pobi : ---", "crong : --", "honux : ---",
+                                                  "pobi : ----", "crong : ---", "honux : ----",
+                                                  "pobi : -----", "crong : ----", "honux : -----",
+                                                  "최종 우승자 : pobi, honux");
+                },
+                MOVING_FORWARD, STOP, MOVING_FORWARD,
+                MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+                MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+                MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD,
+                MOVING_FORWARD, MOVING_FORWARD, MOVING_FORWARD
+        );
+    }
+
+    @Test
+    void 예외_후_재입력_받아서_진행() {
+        assertRandomNumberInRangeTest(
+                () -> {
+                    run(",", "pobi,crong,honux", "0", "5");
+                    assertThat(output()).contains(ERROR_MESSAGE, ERROR_MESSAGE,
+                                                  "pobi : -", "crong : ", "honux : -",
                                                   "pobi : --", "crong : -", "honux : --",
                                                   "pobi : ---", "crong : --", "honux : ---",
                                                   "pobi : ----", "crong : ---", "honux : ----",
